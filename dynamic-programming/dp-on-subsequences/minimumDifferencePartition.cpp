@@ -31,7 +31,7 @@ int subsetSum(int ind, int target, vector<int> &arr, vector<vector<int>> &dp)
     return dp[ind][target] = (target >= arr[ind] ? subsetSum(ind + 1, target - arr[ind], arr, dp) : false) || subsetSum(ind + 1, target, arr, dp);
 }
 
-void memoize(vector<int> &arr, int n, vector<vector<int>> &dp, int sum)
+void tabulation(vector<int> &arr, int n, vector<vector<int>> &dp, int sum)
 {
 
     for (int target = 0; target <= sum; target++)
@@ -57,15 +57,15 @@ int minSubsetSumDifference(vector<int> &arr, int n)
 
     vector<vector<int>> dp(n, vector<int>(sum + 1));
     // subsetSum(0, sum, arr, dp);
-    memoize(arr, n, dp, sum);
+    tabulation(arr, n, dp, sum);
 
     // printV(dp);
 
     int minDiff = INT_MAX;
-    for (int s1 = 0; s1 <= sum; s1++)
+    for (int s1 = sum; s1 >= sum / 2; s1--)
         if (dp[0][s1] == true)
         {
-            minDiff = min(minDiff, abs(2 * s1 - sum));
+            minDiff = min(minDiff, abs(s1 - (sum - s1)));
         }
 
     return minDiff;
