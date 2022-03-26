@@ -1,3 +1,7 @@
+/*
+problem link: https://www.codingninjas.com/codestudio/problems/minimum-elements_3843091
+ */
+
 #include <bits/stdc++.h>
 using namespace std;
 int memoize(int ind, int sum, vector<int> &num, vector<vector<int>> &dp)
