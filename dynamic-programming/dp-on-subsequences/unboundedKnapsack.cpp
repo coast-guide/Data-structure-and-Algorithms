@@ -1,3 +1,7 @@
+/*
+    problem link : https://www.codingninjas.com/codestudio/problems/unbounded-knapsack_1215029
+ */
+
 #include <bits/stdc++.h>
 using namespace std;
 
