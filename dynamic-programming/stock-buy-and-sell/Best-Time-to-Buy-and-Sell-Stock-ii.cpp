@@ -112,6 +112,30 @@ class Solution
 
         return not_has_stock_ahead;
     }
+    int greedy(vector<int> &prices)
+    {
+        // https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/discuss/208241/Explanation-for-the-dummy-like-me.
+
+        // sum of sub-profits
+
+        int i = 0, buy = 0, sell = 0, profit = 0;
+
+        while (i < prices.size() - 1)
+        {
+            while (i + 1 < prices.size() && prices[i + 1] <= prices[i])
+                i++;
+
+            buy = prices[i];
+
+            while (i + 1 < prices.size() && prices[i + 1] > prices[i])
+                i++;
+            sell = prices[i];
+
+            profit += sell - buy;
+        }
+
+        return profit;
+    }
 
 public:
     int maxProfit(vector<int> &prices)
@@ -119,6 +143,7 @@ public:
         // 	vector<vector<int>> dp(prices.size(), vector<int>(2,-1));
         // 	return profit(0,false,prices,n,dp);
 
-        return spaceOptimizedVariables(prices, prices.size());
+        // return spaceOptimizedVariables(prices, prices.size());
+        return greedy(prices);
     }
 };
