@@ -5,6 +5,12 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+/*
+    *Idea:
+        1> sort the array.
+        2> apply LIS.
+*/
+
 class Solution
 {
 public:
