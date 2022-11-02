@@ -2,6 +2,10 @@
 
 #include <bits/stdc++.h>
 using namespace std;
+//  https://leetcode.com/problems/where-will-the-ball-fall/submissions/
+
+#include <bits/stdc++.h>
+using namespace std;
 
 class Solution
 {
@@ -39,6 +43,32 @@ class Solution
             ans.push_back(dfs(0, c, grid, dp));
     }
 
+    void optimizedSolution(vector<vector<int>> &grid, vector<int> &ans)
+    {
+        for (int c = 0; c < grid[0].size(); ++c)
+        {
+            int curr_row = 0, curr_col = c;
+
+            while (curr_row < grid.size())
+            {
+                if (grid[curr_row][curr_col] == 1 && curr_col + 1 < grid[0].size() && grid[curr_row][curr_col + 1] == 1)
+                {
+                    ++curr_row;
+                    ++curr_col;
+                }
+                else if (grid[curr_row][curr_col] == -1 && curr_col - 1 >= 0 && grid[curr_row][curr_col - 1] == -1)
+                {
+                    ++curr_row;
+                    --curr_col;
+                }
+                else
+                    break;
+            }
+
+            ans.push_back(curr_row == grid.size() ? curr_col : -1);
+        }
+    }
+
 public:
     vector<int> findBall(vector<vector<int>> &grid)
     {
@@ -48,17 +78,10 @@ public:
 
         vector<int> ans;
 
-        dfsSolution(grid, ans);
+        // dfsSolution(grid, ans);
+
+        optimizedSolution(grid, ans);
 
         return ans;
     }
 };
-int main(int argc, char const *argv[])
-{
-    Solution s;
-    vector<vector<int>> grid{{1, 1, 1, -1, -1}, {1, 1, 1, -1, -1}, {-1, -1, -1, 1, 1}, {1, 1, 1, 1, -1}, {-1, -1, -1, -1, -1}};
-    vector<int> ans = s.findBall(grid);
-    for (int i : ans)
-        cout << i << " ";
-    return 0;
-}
