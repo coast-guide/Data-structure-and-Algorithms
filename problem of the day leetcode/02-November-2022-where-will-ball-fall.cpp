@@ -1,9 +1,4 @@
-//  https://leetcode.com/problems/where-will-the-ball-fall/submissions/
-
-#include <bits/stdc++.h>
-using namespace std;
-//  https://leetcode.com/problems/where-will-the-ball-fall/submissions/
-
+//  https://leetcode.com/problems/where-will-the-ball-fall/
 #include <bits/stdc++.h>
 using namespace std;
 
