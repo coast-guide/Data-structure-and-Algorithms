@@ -11,7 +11,7 @@ class Solution
         return x >= 0 && y >= 0 && x < grid.size() && y < grid[0].size();
     }
 
-    int dfs(int x, int y, vector<vector<int>> &grid)
+    int dfs(int x, int y, vector<vector<int>> &grid, vector<vector<int>> &dp)
     {
 
         if (x == grid.size())
@@ -20,20 +20,23 @@ class Solution
         if (!isValid(x, y, grid))
             return -1;
 
+        if (dp[x][y] != -1)
+            return dp[x][y];
+
         if (grid[x][y] == 1 && isValid(x, y + 1, grid) && grid[x][y + 1] == 1)
-            return dfs(x + 1, y + 1, grid);
+            return dp[x][y] = dfs(x + 1, y + 1, grid, dp);
 
         if (grid[x][y] == -1 && isValid(x, y - 1, grid) && grid[x][y - 1] == -1)
-            return dfs(x + 1, y - 1, grid);
+            return dp[x][y] = dfs(x + 1, y - 1, grid, dp);
 
         return -1;
     }
 
     void dfsSolution(vector<vector<int>> &grid, vector<int> &ans)
     {
-
+        vector<vector<int>> dp(grid.size(), vector<int>(grid[0].size(), -1));
         for (int c = 0; c < grid[0].size(); ++c)
-            ans.push_back(dfs(0, c, grid));
+            ans.push_back(dfs(0, c, grid, dp));
     }
 
 public:
