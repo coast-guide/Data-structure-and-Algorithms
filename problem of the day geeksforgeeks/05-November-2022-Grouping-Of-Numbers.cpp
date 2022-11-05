@@ -2,6 +2,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+// Key Concept: (A + B) is divisible by K if (A % K + B % K) is divisible by K.
+
 class Solution
 {
 
